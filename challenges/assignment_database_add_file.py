@@ -14,6 +14,8 @@ conn = sqlite3.connect('file.db')
 
 with conn:
     cursor = conn.cursor()
+    # NOTE: FileName is set to only accept unique values by using
+    #       the UNIQUE constraint
     cursor.execute("CREATE TABLE IF NOT EXISTS Txt_Files( \
             ID INTEGER PRIMARY KEY AUTOINCREMENT, \
             FileName TEXT UNIQUE\
@@ -35,6 +37,8 @@ for i in fileList:
         conn = sqlite3.connect('file.db')
         with conn:
             cursor = conn.cursor()
+            # Use IGNORE on the insert to stop program from trying to break the column 'FileName'
+            # UNIQUE constraint (i.e. stops duplicates)
             cursor.execute("INSERT OR IGNORE INTO Txt_Files(FileName) VALUES (?)", \
                            (fileName))
             conn.commit()
