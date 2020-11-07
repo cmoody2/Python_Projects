@@ -16,7 +16,7 @@ with conn:
     cursor = conn.cursor()
     cursor.execute("CREATE TABLE IF NOT EXISTS Txt_Files( \
             ID INTEGER PRIMARY KEY AUTOINCREMENT, \
-            FileName TEXT \
+            FileName TEXT UNIQUE\
             )")
     conn.commit()
 conn.close()
@@ -35,7 +35,7 @@ for i in fileList:
         conn = sqlite3.connect('file.db')
         with conn:
             cursor = conn.cursor()
-            cursor.execute("INSERT INTO Txt_Files(FileName) VALUES (?)", \
+            cursor.execute("INSERT OR IGNORE INTO Txt_Files(FileName) VALUES (?)", \
                            (fileName))
             conn.commit()
         conn.close()
@@ -53,7 +53,7 @@ with conn:
     varFiles = cursor.fetchall()
     for item in varFiles:
         msg = "File Name: {}\n".format(item[0])
-    print(msg)
+        print(msg)
 conn.close()
 
 
