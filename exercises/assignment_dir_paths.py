@@ -28,10 +28,10 @@ txtList = []
 -----------------------------------------------------------"""
 print("\nThese are all '.txt' files in specified directory:")
     
-for i in dir1:
-    if '.txt' in i:
-        txtList += [i]
-        docName = i
+for file in dir1:
+    if file.endswith('.txt'):
+        txtList += [file]
+        docName = file
         docPath = 'C:\\Users\Moody\Documents\GitHub\Python_projects\exercises\OS_module_test'
         abPath = os.path.join(docPath, docName)
         modTime = os.path.getmtime(abPath)
