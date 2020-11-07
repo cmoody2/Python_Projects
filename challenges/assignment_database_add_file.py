@@ -31,9 +31,9 @@ conn.close()
 # ----------------------------------------------------------------
 print("Search results for .txt files: \n")
 
-for i in fileList:
-    if '.txt' in i:
-        fileName = [i]
+for file in fileList:
+    if file.endswith(".txt"):
+        fileName = [file]
         conn = sqlite3.connect('file.db')
         with conn:
             cursor = conn.cursor()
