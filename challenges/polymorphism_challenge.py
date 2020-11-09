@@ -1,5 +1,8 @@
 
+
+#-------------------------------------
 # Parent class
+#-------------------------------------
 class Game_console:
     def __init__(self, name, manufacturer, resolution, number_of_controllers):
         self.name = name
@@ -23,8 +26,9 @@ class Game_console:
                 Game_console.power(self)
 
 
-
+#-------------------------------------
 # Child class 1
+#-------------------------------------
 class Nintendo_switch(Game_console):
     def __init__(self, name, manufacturer, resolution, number_of_controllers, console_mode, handheld_resolution):
         # Using super() method we can have the child class inherit the parents attributes
@@ -50,8 +54,9 @@ class Nintendo_switch(Game_console):
                 Nintendo_switch.power(self)
 
 
-            
+#-------------------------------------          
 # Child class 2
+#-------------------------------------
 class Playstation_5(Game_console):
     def __init__(self, name, manufacturer, resolution, number_of_controllers, video_connection, online_subscription):
         # Using super() method we can have the child class inherit the parents attributes
