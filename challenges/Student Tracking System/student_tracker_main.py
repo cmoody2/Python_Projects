@@ -25,10 +25,10 @@ class ParentWindow(Frame):
 
 
         self.master = master
-        self.master.minsize(600, 400)
-        self.master.maxsize(600, 400)
+        self.master.minsize(450, 350)
+        self.master.maxsize(450, 350)
 
-        student_tracker_func.center_window(self, 600, 400)
+        student_tracker_func.center_window(self, 450, 350)
         self.master.title("Mojave High School Student Tracker")
         self.master.configure(bg="#90ee90")
         self.master.protocol("WM_DELETE_WINDOW", lambda: student_tracker_func.ask_quit(self))
