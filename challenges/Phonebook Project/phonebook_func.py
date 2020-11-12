@@ -1,3 +1,16 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+#   Python ver:     3.7.8
+#
+#   Author:         Christopher A. Moody
+#
+#   Purpose:        Creating a Phonebook Demo. This will demonstrate
+#                   OOP, Tkinter GUI module, and using Tkinter Parent
+#                   and child relationships.
+#
+#   Tested OS:      Written and tested with Windows 10.
+
+
 import os
 from tkinter import *
 import tkinter as tk
@@ -29,7 +42,7 @@ def ask_quit(self):
 
 #---------------------------------------------------------------------
 def create_db(self):
-    conn = sqlite3.connect('phonebook.db')
+    conn = sqlite3.connect('db_phonebook.db')
     with conn:
         cur = conn.cursor()
         cur.execute("CREATE TABLE if not exists tbl_phonebook( \
@@ -38,7 +51,7 @@ def create_db(self):
             col_lname TEXT, \
             col_fullname TEXT, \
             col_phone TEXT, \
-            col_email TEXT, \
+            col_email TEXT \
             );")
         # You must commit() to save changes & close the datebase connection
         conn.commit()
@@ -61,8 +74,15 @@ def count_records(cur):
     count = ""
     cur.execute("""SELECT COUNT(*) FROM tbl_phonebook""")
     count = cur.fetchone()[0]
+    return cur, count
+
+
+#Select item in Listbox
+def onSelect(self,event):
+    varList = event.widget
+    select = varList.curselection()[0]
     value = varList.get(select)
-    conn = sqLite3.connect('db.phonebook.db')
+    conn = sqlite3.connect('db_phonebook.db')
     with conn:
         cursor = conn.cursor()
         cursor.execute("""SELECT col_fname, col_lname, col_phone, col_email FROM tbl_phonebook WHERE col_fullname = (?)""", [value])
@@ -101,7 +121,7 @@ def addToList(self):
             # Check the database for existence of the fullname, if so we will alert user and disregard request
             cursor.execute("""SELECT COUNT(col_fullname) FROM tbl_phonebook WHERE col_fullname = '{}'""".format(var_fullname)) #,(var_fullname))
             count = cursor.fetchone()[0]
-            chkname = count
+            chkName = count
             if chkName == 0:  # If this is 0 then there is no existance of the fullname and we can add new data
                 print("chkName: {}".format(chkName))
                 cursor.execute("""INSERT INTO tbl_phonebook (col_fname,col_lname,col_fullname,col_phone,col_email) VALUES (?,?,?,?,?)""",(var_fname,var_lname,var_fullname,var_phone,var_email))
@@ -210,7 +230,7 @@ def onUpdate(self):
                     #conn = sqlite3.connect('db_phonebook.db')
                     with conn:
                         cursor = conn.cursor()
-                        cursor.execute("""UPDATE tbl_phonebook SET col_phone = '{}', col_email = '{1}' WHERE col_fullname = '{2}'""".format(var_phone,var_email,var_value))
+                        cursor.execute("""UPDATE tbl_phonebook SET col_phone = '{0}', col_email = '{1}' WHERE col_fullname = '{2}'""".format(var_phone,var_email,var_value))
                         onClear(self)
                         conn.commit()
                 else:
