@@ -1,4 +1,5 @@
-
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 #   Python ver:     3.7.8
 #
 #   Author:         Christopher A. Moody
@@ -9,8 +10,9 @@
 #
 #   Tested OS:      Written and tested with Windows 10.
 
-form tkinter import *
+from tkinter import *
 import tkinter as tk
+from tkinter import messagebox
 
 
 # Be sure to import our other modules
