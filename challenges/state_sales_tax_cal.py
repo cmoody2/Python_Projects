@@ -36,14 +36,10 @@ class StateTax:
         return ("\n\nYour total including sales tax is: ${:0.2f}.".format(total_amount))
         
 
-    def totalAmount(self):
-        return self._taxEquation()
-        
-
 
 if __name__ == "__main__":
     transact = StateTax()
     print("This is the current CA sales tax: {}%".format(transact.getSaleTax()))
-    purchase = transact.totalAmount()
+    purchase = transact._taxEquation()
     print(purchase)
     
