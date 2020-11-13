@@ -29,14 +29,13 @@ class TetrisScore(Leaderboard):
         lboard = {"DEX": 4500, "WIL": 4299, "FRD": 4001, "GBL": 3990, "ADM": 4490}
         lboard.update({user: score})
         newlboard = sorted(lboard.items(), key = lambda kv:(kv[1], kv[0]))
+        print("\nCurrent leader board:")
         for k, v in reversed(newlboard):
             print(k, v)
-            
-##            print("Current leader board: {}".format(lboard))
 
 
 player = TetrisScore()
-player.playerScore(4400)
-player.insertScore(4400)
+player.playerScore(4333)
+player.insertScore(4333)
         
         
