@@ -25,14 +25,14 @@ class Leaderboard(ABC):
 
 class TetrisScore(Leaderboard):
     def insertScore(self, score):
-        lboard = [4500, 4299, 4001, 3990]
-        lboard.append(score)
-        lboard.sort(reverse=True)
-        
-        print(lboard)
-        
-        user_place = "Second"
-        print("You placed in {} on the Tetris leaderboard".format(user_place))
+        user = "SAM"
+        lboard = {"DEX": 4500, "WIL": 4299, "FRD": 4001, "GBL": 3990, "ADM": 4490}
+        lboard.update({user: score})
+        newlboard = sorted(lboard.items(), key = lambda kv:(kv[1], kv[0]))
+        for k, v in reversed(newlboard):
+            print(k, v)
+            
+##            print("Current leader board: {}".format(lboard))
 
 
 player = TetrisScore()
