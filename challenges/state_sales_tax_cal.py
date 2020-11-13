@@ -1,7 +1,17 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+#   Python ver:     3.7.8
+#
+#   Author:         Christopher A. Moody
+#
+#   Purpose:        Creating a mock state sales tax calculator
+#                   to demonstrate the use of protected and private
+#                   attributes and methods.
+#
+#   Tested OS:      Written and tested with Windows 10.
 
 
 
-# Create Sales Calculator
 class StateTax:
     def __init__(self):
         self.__saleTax = 7.25
