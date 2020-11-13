@@ -4,9 +4,9 @@
 #
 #   Author:         Christopher A. Moody
 #
-#   Purpose:        Creating a mock state sales tax calculator
-#                   to demonstrate the use of protected and private
-#                   attributes and methods.
+#   Purpose:        Create a leaderboard. Use the python ABC
+#                   module to create an abstract parent method
+#                   and define implementation of that method in a child class.
 #
 #   Tested OS:      Written and tested with Windows 10.
 
