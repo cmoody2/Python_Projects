@@ -28,13 +28,8 @@ class TetrisScore(Leaderboard):
         lboard = [4500, 4299, 4001, 3990]
         lboard.append(score)
         lboard.sort(reverse=True)
+        
         print(lboard)
-##        lboard.index(0) == "First"
-##        lboard.index(1) == "Second"
-##        lboard.index(2) == "Third"
-##        lboard.index(3) == "Fourth"
-##        lboard.index(4) == "Fifth"
-        print("{} {}".format(lboard.index(2), lboard[2]))
         
         user_place = "Second"
         print("You placed in {} on the Tetris leaderboard".format(user_place))
