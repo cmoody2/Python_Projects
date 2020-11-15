@@ -10,12 +10,14 @@
 
 from tkinter import *
 import tkinter as tk
+from tkinter import messagebox
+
 
 import check_files_func
 import check_files_gui
 
 
-def ParentWindow(Frame):
+class ParentWindow(Frame):
     def __init__(self, master, *args, **kwargs):
         Frame.__init__(self, master, *args, **kwargs)
 
