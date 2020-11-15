@@ -12,6 +12,10 @@
 import os
 from tkinter import *
 import tkinter as tk
+from tkinter import messagebox
+
+import check_files_gui
+import check_files_main
 
 
 def center_window(self, w, h):  # Pass in the tkinter frame (master) reference and the w and h
