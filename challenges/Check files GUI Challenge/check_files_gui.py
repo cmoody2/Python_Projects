@@ -14,11 +14,13 @@ import tkinter as tk
 import check_files_main
 import check_files_func
 
-def load_gui(self):
 
+def load_gui(self):
     self.btn_browse = tk.Button(self.master, width=16, height=2, text='Browse...')
     self.btn_browse.grid(row=2, column=1, padx=(10,10), pady=(0,0), sticky=W)
 
+    self.btn_close = tk.Button(self.master, width=12, height=2, text='Close Program', command=lambda: check_files_func.ask_quit(self))
+    self.btn_close.grid(row=5, column=1, columnspan=1, padx=(15,0), pady=(45,10), sticky=E)
 
 
 if __name__ == "__main__":
