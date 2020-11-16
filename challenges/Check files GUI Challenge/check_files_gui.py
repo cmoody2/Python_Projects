@@ -17,9 +17,9 @@ import check_files_func
 
 def load_gui(self):
     # gui buttons
-    self.btn_browse = tk.Button(self.master, width=14, height=1, text='Browse...')
+    self.btn_browse = tk.Button(self.master, width=14, height=1, text='Browse...', command=lambda: check_files_func.askdir(self))
     self.btn_browse.grid(row=3, column=1, padx=(10,10), pady=(45,0), sticky=W)
-    self.btn_browse2 = tk.Button(self.master, width=14, height=1, text='Browse...')
+    self.btn_browse2 = tk.Button(self.master, width=14, height=1, text='Browse...', command=lambda: check_files_func.askdir2(self))
     self.btn_browse2.grid(row=4, column=1, padx=(10,10), pady=(8,0), sticky=W)
     self.btn_check = tk.Button(self.master, width=14, height=2, text='Check for files...')
     self.btn_check.grid(row=5, column=1, padx=(10,10), pady=(8,0), sticky=W)
