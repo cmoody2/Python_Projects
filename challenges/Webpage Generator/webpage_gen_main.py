@@ -29,7 +29,7 @@ class ParentWindow(Frame):
         self.master.maxsize(500,110)    #width,height
 
         webpage_gen_func.center_window(self, 500, 110)
-        self.master.title("Webpage generator")
+        self.master.title("Webpage Generator")
         self.master.configure(bg="#F0F0F0")
 
         self.master.protocol("WM_DELETE_WINDOW", lambda: webpage_gen_func.ask_quit(self))
