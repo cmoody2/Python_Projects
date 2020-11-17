@@ -47,16 +47,11 @@ def onClear(self):
     self.txt_add.delete(0,END)
 
 
-def addText(self):
-    userText = self.txt_add.get()
-    if userText != None:
-        return userText
-
 
 # this function creates the webpage with the users input
 def create_file(self):
     hFile = open("index.html","w")
-    usertext = addText(self)
+    usertext = self.txt_add.get()
 
     if usertext != '':
         hFile.write("""
