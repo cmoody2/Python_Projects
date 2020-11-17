@@ -34,6 +34,7 @@ def center_window(self, w, h):  # Pass in the tkinter frame (master) reference a
     return centerGeo
 
 
+# we use this function to ask user before closing the program
 def ask_quit(self):
     if messagebox.askokcancel("Exit program", "Okay to exit application?"):
         # This closes app
@@ -47,27 +48,30 @@ def onClear(self):
 
 
 def addText(self):
-    userText = self.txt_add.insert(0,data[0])
+    userText = self.txt_add.get()
     if userText != None:
         return userText
 
 
+# this function creates the webpage with the users input
 def create_file(self):
     hFile = open("index.html","w")
-    addText = webpage_gen_func.addText(self)
+    usertext = addText(self)
 
-    hFile.write("""
-    <html>
-        <body>
-            <h1>
-                {}
-            </h1>
-        <body>
-    </html>
-    """.format(addText))
-
-    hFile.close()
-    wb.open_new_tab("index.html")
+    if usertext != '':
+        hFile.write("""
+        <html>
+            <body>
+                <h1>
+                    {}
+                </h1>
+            <body>
+        </html>
+        """.format(usertext))
+        hFile.close()
+        wb.open_new_tab("index.html")
+    else:
+        messagebox.showinfo(title="Error", message="Please insert text to field and press 'Add Text' button")
 
 
 
