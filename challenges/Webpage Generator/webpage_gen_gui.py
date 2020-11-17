@@ -23,10 +23,8 @@ import webpage_gen_main
 def load_gui(self):
     
     # buttons
-    self.btn_add = tk.Button(self.master, width=14, height=1, text='Add Text', command=lambda: webpage_gen_func.addText(self))
-    self.btn_add.grid(row=1, column=0, padx=(10,10), pady=(35,0), sticky=W)
     self.btn_clear = tk.Button(self.master, width=14, height=1, text='Clear Text', command=lambda: webpage_gen_func.onClear(self))
-    self.btn_clear.grid(row=2, column=0, padx=(10,10), pady=(10,0), sticky=W)
+    self.btn_clear.grid(row=1, column=0, padx=(10,10), pady=(35,0), sticky=W)
     self.btn_create = tk.Button(self.master, width=14, height=1, text='Create Page', command=lambda: webpage_gen_func.create_file(self))
     self.btn_create.grid(row=2, column=4, padx=(10,0), pady=(10,0), sticky=E)
     self.btn_close = tk.Button(self.master, width=14, height=1, text='Close Program', command=lambda: webpage_gen_func.ask_quit(self))
