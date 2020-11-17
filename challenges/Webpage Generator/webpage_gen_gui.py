@@ -21,6 +21,8 @@ import webpage_gen_main
 
 
 def load_gui(self):
+    
+    # buttons
     self.btn_add = tk.Button(self.master, width=14, height=1, text='Add Text', command=lambda: webpage_gen_func.addText(self))
     self.btn_add.grid(row=1, column=0, padx=(10,10), pady=(35,0), sticky=W)
     self.btn_clear = tk.Button(self.master, width=14, height=1, text='Clear Text', command=lambda: webpage_gen_func.onClear(self))
@@ -30,6 +32,7 @@ def load_gui(self):
     self.btn_close = tk.Button(self.master, width=14, height=1, text='Close Program', command=lambda: webpage_gen_func.ask_quit(self))
     self.btn_close.grid(row=2, column=5, padx=(0,14), pady=(10,0), sticky=E)
 
+    # user text field
     self.txt_add = tk.Entry(self.master, width=57, text='')
     self.txt_add.grid(row=1, column=1, rowspan=1, columnspan=6, padx=(14,40), pady=(38,0), sticky=N+E+W)
 
