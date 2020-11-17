@@ -71,7 +71,7 @@ def create_file(self):
         hFile.close()
         wb.open_new_tab("index.html")
     else:
-        messagebox.showinfo(title="Error", message="Please insert text to field and press 'Add Text' button")
+        messagebox.showinfo(title="Error", message="Please insert text into field")
 
 
 
