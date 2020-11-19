@@ -16,15 +16,18 @@ from tkinter import *
 import os
 import tkinter as tk
 
+import file_transfer_func
+import file_transfer_gui
+
 class Window(Frame):
     def __init__(self, master, *args, **kwargs):
         Frame.__init__(self, master, *args, **kwargs)
 
         self.master = master
-        self.master.minsize(500,300) #width,height
-        self.master.maxsize(500,300)
+        self.master.minsize(500,170) #width,height
+        self.master.maxsize(500,170)
 
-        file_transfer_func.center_window(self, 500, 300)
+        file_transfer_func.center_window(self, 500, 170)
         self.master.title("File Transfer Plus")
         self.master.configure(bg='#F0F0F0')
 
