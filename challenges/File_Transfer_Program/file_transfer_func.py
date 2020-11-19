@@ -15,19 +15,58 @@
 
 import shutil
 import os
-import file_transfer_main
+from tkinter import *
+import tkinter as tk
+from tkinter import messagebox
+from tkinter import filedialog
 
+import file_transfer_main
+import file_transfer_gui
+
+
+#---------------------------------
+#   Window GUI Functions
+#---------------------------------
+def center_window(self, w, h):  # Pass in the tkinter frame (master) reference and the w and h
+    # Get user's screen width and height
+    screen_width = self.master.winfo_screenwidth()
+    screen_height = self.master.winfo_screenheight()
+    # Calculate x and y coordinates to paint the app centered on the user's screen
+    x = int((screen_width/2) - (w/2))
+    y = int((screen_height/2) - (h/2))
+    centerGeo = self.master.geometry('{}x{}+{}+{}'.format(w, h, x, y))
+    return centerGeo
+
+
+def ask_quit(self):
+    if messagebox.askokcancel("Exit program", "Okay to exit application?"):
+        # This closes app
+        self.master.destroy()
+        os._exit(0)
+
+
+#---------------------------------
+#   Directory Button Function
+#---------------------------------
+def askdir(self):
+    folder = filedialog.askdirectory(initial="/")
+    self.txt_browse.insert(0,folder)
+
+def askdir2(self):
+    folder = filedialog.askdirectory(initial="/")
+    self.txt_browse2.insert(0,folder)
 
 #----------------------
 #   FILE LOCATIONS
 #----------------------
+
 #set where the source of the files are
-src = '/Users/Moody/Documents/GitHub/Python_projects/challenges/File_Transfer_Program/new_orders/'
-src_files = os.listdir(src)
+##src = '{}'.format(self.txt_browse.get())
+##src_files = os.listdir(src)
 
 # set the destination of the files to be transfered to home office
-dst = '/Users/Moody/Documents/GitHub/Python_projects/challenges/File_Transfer_Program/transfers/'
-dst_files = os.listdir(dst)
+##dst = '/Users/Moody/Documents/GitHub/Python_projects/challenges/File_Transfer_Program/transfers/'
+##dst_files = os.listdir(dst)
 
 
 #-----------------------
@@ -35,10 +74,19 @@ dst_files = os.listdir(dst)
 #-----------------------
 
 class FileCheck():
-    def __init__(self, filename):
+    def cache(self, filename):
         self._cached_stamp = 0
         self.filename = filename # gets filename
+        
+    def paths(self):
+        #set where the source of the files are
+        src = '{}'.format(self.txt_browse.get())
+        src_files = os.listdir(src)
 
+        # set the destination of the files to be transfered to home office
+        dst = '{}'.format(self.txt_browse2.get())
+        dst_files = os.listdir(dst)
+        
     def look(self):
         stamp = os.stat(self.filename).st_mtime
         # define stamp equal to the modify time of given file
@@ -54,10 +102,11 @@ class FileCheck():
 # iterate through each file in src directory
 # if FileCheck supplied with specified file returns True
 # then copy to dst directory
-def Transfer():
+def transfer():
     for i in src_files:
         if FileCheck(i):
             shutil.copy2(src + i,dst)
+
 
 if __name__ == "__main__":
     pass
