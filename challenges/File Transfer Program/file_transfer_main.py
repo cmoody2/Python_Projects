@@ -16,12 +16,12 @@ import os
 import filecmp
 import datetime as dt
 
-### set where the source of the files are
-##source = '/Users/Moody/Desktop/new_orders/'
-##
-### set the destination path to folderB
-##destination = '/Users/Moody/Desktop/transfer_orders/'
-##files = os.listdir(source)
+# set where the source of the files are
+source = '/Users/Moody/Desktop/new_orders/'
+
+# set the destination path to folderB
+destination = '/Users/Moody/Desktop/transfer_orders/'
+files = os.listdir(source)
 
 comparison = filecmp.cmpfiles('new_orders','transfer_orders','common',shallow=False)
 
