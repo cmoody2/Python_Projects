@@ -4,28 +4,40 @@
 #
 #   Author:         Christopher A. Moody
 #
-#   Purpose:        Create a file transfer program that with use the
-#                   shutil module to transfer files inbetween different
-#                   directories.
+#   Purpose:        A comapany branch needs to transfer new and/or modified
+#                   files to the home office each day and they need a script that can decide
+#                   which files are valid candidates for transfering. Create a program that
+#                   can decide whether not a file is new or modified and add it to a directory
+#                   that will be sent to the home office.
 #
 #   Tested OS:      Written and tested with Windows 10.
 
-
-import shutil
+from tkinter import *
 import os
-import filecmp
-import datetime as dt
+import tkinter as tk
 
-# set where the source of the files are
-source = '/Users/Moody/Desktop/new_orders/'
+class Window(Frame):
+    def __init__(self, master, *args, **kwargs):
+        Frame.__init__(self, master, *args, **kwargs)
 
-# set the destination path to folderB
-destination = '/Users/Moody/Desktop/transfer_orders/'
-files = os.listdir(source)
+        self.master = master
+        self.master.minsize(500,300) #width,height
+        self.master.maxsize(500,300)
 
-comparison = filecmp.cmpfiles('new_orders','transfer_orders','common',shallow=False)
+        file_transfer_func.center_window(self, 500, 300)
+        self.master.title("File Transfer Plus")
+        self.master.configure(bg='#F0F0F0')
 
-print(comparison)
+        self.master.protocol("WM_DELETE_WINDOW", lambda: file_transfer_func.ask_quit(self))
+        arg = self.master
+        file_transfer_gui.load_gui(self)
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = Window(root)
+    root.mainloop()
+
+
 
 
 
