@@ -60,13 +60,13 @@ def askdir2(self):
 #   FILE LOCATIONS
 #----------------------
 
-#set where the source of the files are
-##src = '{}'.format(self.txt_browse.get())
-##src_files = os.listdir(src)
+# set where the source of the files are
+src = '/Users/Moody/Documents/GitHub/Python_projects/challenges/File_Transfer_Program/new_orders/'
+src_files = os.listdir(src)
 
 # set the destination of the files to be transfered to home office
-##dst = '/Users/Moody/Documents/GitHub/Python_projects/challenges/File_Transfer_Program/transfers/'
-##dst_files = os.listdir(dst)
+dst = '/Users/Moody/Documents/GitHub/Python_projects/challenges/File_Transfer_Program/transfers/'
+dst_files = os.listdir(dst)
 
 
 #-----------------------
@@ -74,18 +74,10 @@ def askdir2(self):
 #-----------------------
 
 class FileCheck():
-    def cache(self, filename):
+    def __init__(self, filename):
         self._cached_stamp = 0
         self.filename = filename # gets filename
         
-    def paths(self):
-        #set where the source of the files are
-        src = '{}'.format(self.txt_browse.get())
-        src_files = os.listdir(src)
-
-        # set the destination of the files to be transfered to home office
-        dst = '{}'.format(self.txt_browse2.get())
-        dst_files = os.listdir(dst)
         
     def look(self):
         stamp = os.stat(self.filename).st_mtime
@@ -102,12 +94,13 @@ class FileCheck():
 # iterate through each file in src directory
 # if FileCheck supplied with specified file returns True
 # then copy to dst directory
-def transfer():
-    for i in src_files:
-        if FileCheck(i):
-            shutil.copy2(src + i,dst)
+for i in src_files:
+    if FileCheck(i):
+        shutil.copy2(src + i,dst)
 
 
-if __name__ == "__main__":
-    pass
+
+
+##if __name__ == "__main__":
+##    pass
 
