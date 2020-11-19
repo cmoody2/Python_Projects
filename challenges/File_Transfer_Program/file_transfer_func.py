@@ -15,6 +15,7 @@
 
 import shutil
 import os
+import file_transfer_main
 
 
 #----------------------
@@ -53,7 +54,11 @@ class FileCheck():
 # iterate through each file in src directory
 # if FileCheck supplied with specified file returns True
 # then copy to dst directory
-for i in src_files:
-    if FileCheck(i):
-        shutil.copy2(src + i,dst)
+def Transfer():
+    for i in src_files:
+        if FileCheck(i):
+            shutil.copy2(src + i,dst)
+
+if __name__ == "__main__":
+    pass
 
