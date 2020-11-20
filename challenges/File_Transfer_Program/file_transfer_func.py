@@ -44,10 +44,15 @@ def ask_quit(self):
         self.master.destroy()
         os._exit(0)
 
-
+def onClear(self):
+    self.txt_browse.delete(0,END)
+    self.txt_browse2.delete(0,END)
+    
 #---------------------------------
 #   Directory Button Function
 #---------------------------------
+# these are tied to the source and destination folder buttons respectively
+# and returns the paths selected by the user.
 def askdir(self):
     folder = filedialog.askdirectory(initial="/")
     self.txt_browse.insert(0,folder)
@@ -55,19 +60,7 @@ def askdir(self):
 def askdir2(self):
     folder = filedialog.askdirectory(initial="/")
     self.txt_browse2.insert(0,folder)
-
-#----------------------
-#   FILE LOCATIONS
-#----------------------
-
-# set where the source of the files are
-src = '/Users/Moody/Documents/GitHub/Python_projects/challenges/File_Transfer_Program/new_orders/'
-src_files = os.listdir(src)
-
-# set the destination of the files to be transfered to home office
-dst = '/Users/Moody/Documents/GitHub/Python_projects/challenges/File_Transfer_Program/transfers/'
-dst_files = os.listdir(dst)
-
+    
 
 #-----------------------
 #   FILE CHECK/COPY OPERATION
@@ -94,13 +87,19 @@ class FileCheck():
 # iterate through each file in src directory
 # if FileCheck supplied with specified file returns True
 # then copy to dst directory
-for i in src_files:
-    if FileCheck(i):
-        shutil.copy2(src + i,dst)
+def transfer(self):
+    path = os.path.normpath(self.txt_browse.get()) # gets path from text entry and normalizes it
+    conv = path + '/'                              # adds a / to end of normalized path
+    src = conv
+    src_files = os.listdir(src)
+    dst = os.path.normpath(self.txt_browse2.get())
+    for i in src_files:
+        if FileCheck(i):
+            shutil.copy2(src + i,dst)
 
 
 
 
-##if __name__ == "__main__":
-##    pass
+if __name__ == "__main__":
+    pass
 
