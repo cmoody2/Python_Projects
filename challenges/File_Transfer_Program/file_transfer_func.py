@@ -27,6 +27,7 @@ import file_transfer_gui
 #---------------------------------
 #   Window GUI Functions
 #---------------------------------
+
 def center_window(self, w, h):  # Pass in the tkinter frame (master) reference and the w and h
     # Get user's screen width and height
     screen_width = self.master.winfo_screenwidth()
@@ -51,6 +52,7 @@ def onClear(self):
 #---------------------------------
 #   Directory Button Function
 #---------------------------------
+
 # these are tied to the source and destination folder buttons respectively
 # and returns the paths selected by the user.
 def askdir(self):
@@ -62,9 +64,9 @@ def askdir2(self):
     self.txt_browse2.insert(0,folder)
     
 
-#-----------------------
-#   FILE CHECK/COPY OPERATION
-#-----------------------
+#-----------------------------
+#   FILE CHECK/COPY CLASS
+#-----------------------------
 
 class FileCheck():
     def __init__(self, filename):
@@ -84,6 +86,11 @@ class FileCheck():
         else:
             return False
 
+
+#------------------------------
+#   Transfer Function
+#------------------------------
+
 # iterate through each file in src directory
 # if FileCheck supplied with specified file returns True
 # then copy to dst directory
@@ -93,11 +100,13 @@ def transfer(self):
     src = conv
     src_files = os.listdir(src)
     dst = os.path.normpath(self.txt_browse2.get())
-    for i in src_files:
-        if FileCheck(i):
-            shutil.copy2(src + i,dst)
-
-
+    try:
+        if os.path.isdir(path) and os.path.isdir(dst):
+            for i in src_files:
+                if FileCheck(i):
+                    shutil.copy2(src + i,dst)
+    except:
+        messagebox.showinfo(title="Folder Selection Error", message="Please select a source and destination folder")
 
 
 if __name__ == "__main__":
