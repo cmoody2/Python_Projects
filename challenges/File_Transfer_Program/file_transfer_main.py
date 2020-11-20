@@ -29,7 +29,7 @@ class Window(Frame):
 
         file_transfer_func.center_window(self, 500, 170)
         self.master.title("File Transfer Plus")
-        self.master.configure(bg='#F0F0F0')
+        self.master.configure(bg='blue')
 
         self.master.protocol("WM_DELETE_WINDOW", lambda: file_transfer_func.ask_quit(self))
         arg = self.master
