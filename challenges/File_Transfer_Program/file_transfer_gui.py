@@ -26,10 +26,12 @@ def load_gui(self):
     self.btn_browse.grid(row=3, column=1, padx=(10,10), pady=(45,0), sticky=W)
     self.btn_browse2 = tk.Button(self.master, width=14, height=1, text='Destination Folder', command=lambda: file_transfer_func.askdir2(self))
     self.btn_browse2.grid(row=4, column=1, padx=(10,10), pady=(8,0), sticky=W)
-    self.btn_transfer = tk.Button(self.master, width=14, height=2, text='Transfer Files', command=lambda: file_transfer_func.transfer())
+    self.btn_transfer = tk.Button(self.master, width=14, height=2, text='Transfer Files', command=lambda: file_transfer_func.transfer(self))
     self.btn_transfer.grid(row=5, column=1, padx=(10,10), pady=(8,0), sticky=W)
     self.btn_close = tk.Button(self.master, width=14, height=2, text='Close Program', command=lambda: file_transfer_func.ask_quit(self))
     self.btn_close.grid(row=5, column=6, padx=(43,0), pady=(8,0), sticky=E)
+    self.btn_clear = tk.Button(self.master, width=14, height=1, text='Clear Fields', command=lambda: file_transfer_func.onClear(self))
+    self.btn_clear.grid(row=5, column=2, padx=(43,0), pady=(8,0), sticky=W)
 
 
     # gui text fields
