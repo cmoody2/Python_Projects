@@ -56,10 +56,12 @@ def onClear(self):
 # these are tied to the source and destination folder buttons respectively
 # and returns the paths selected by the user.
 def askdir(self):
+    self.txt_browse.delete(0,END)
     folder = filedialog.askdirectory(initial="/")
     self.txt_browse.insert(0,folder)
 
 def askdir2(self):
+    self.txt_browse2.delete(0,END)
     folder2 = filedialog.askdirectory(initial="/")
     self.txt_browse2.insert(0,folder2)
     
@@ -95,22 +97,22 @@ fc = FileCheck('')
 # then copy to dst directory
 def transfer(self):
     src_path = os.path.normpath(self.txt_browse.get()) # gets path from text entry and normalizes it
-    conv_src = src_path + '/'                              # adds a / to end of normalized path
-    src = conv_src
+    src = src_path + '/'                               # adds a / to end of normalized path
     src_files = os.listdir(src)
+    # return list of files in 'src'
     
     dst_path = os.path.normpath(self.txt_browse2.get())
-    conv_dst = dst_path + '/'
-    dst = conv_dst
-    try:
-        if os.path.isdir(src_path) and os.path.isdir(dst_path):
-            for i in src_files:
-                fc.file_path = src + i
-                if fc.look():
-                    shutil.copy2(src + i,dst)
-                else:
-                    continue
-    except:
+    dst = dst_path + '/'
+    if os.path.isabs(src_path) and os.path.isabs(dst_path):
+    # determines whether the text in both text fields are absolute paths
+        for i in src_files:
+            fc.file_path = src + i
+            if fc.look():
+                shutil.copy2(src + i,dst)
+                #copy file to destination folder
+            else:
+                continue
+    else:
         messagebox.showinfo(title="Folder Selection Error", message="Please select a source and destination folder")
 
 
