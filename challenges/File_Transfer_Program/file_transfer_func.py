@@ -78,7 +78,7 @@ class FileCheck:
         # this assigns stamp a value of the given files modifiy time
         cur_time = time.time()
         # gets the current time in seconds since epoch
-        if stamp > (cur_time - float(86400)) and stamp < cur_time:
+        if stamp > (cur_time - float(86400)):
             # cur_time - float(86400) is the current time minus 24hrs
             return True
         else:
