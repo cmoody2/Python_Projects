@@ -12,7 +12,7 @@
 #
 #   Tested OS:      Written and tested with Windows 10.
 
-
+import time
 import shutil
 import os
 from tkinter import *
@@ -60,32 +60,31 @@ def askdir(self):
     self.txt_browse.insert(0,folder)
 
 def askdir2(self):
-    folder = filedialog.askdirectory(initial="/")
-    self.txt_browse2.insert(0,folder)
+    folder2 = filedialog.askdirectory(initial="/")
+    self.txt_browse2.insert(0,folder2)
     
 
 #-----------------------------
 #   FILE CHECK/COPY CLASS
 #-----------------------------
 
-class FileCheck():
-    def __init__(self, filename):
-        self._cached_stamp = 0
-        self.filename = filename # gets filename
+class FileCheck:
+    def __init__(self, file_path):
+        self.file_path = file_path # gets filename
         
         
     def look(self):
-        stamp = os.stat(self.filename).st_mtime
-        # define stamp equal to the modify time of given file
-        if stamp != self._cached_stamp:
-        # checks if the modify time is not equal to cached_stamp
-        # which starts as 0. if true, then set cached_stamp equal to
-        # stamp(file mod time) and return True
-            self._cached_stamp = stamp
+        stamp = os.path.getmtime(self.file_path)
+        # this assigns stamp a value of the given files modifiy time
+        cur_time = time.time()
+        # gets the current time in seconds since epoch
+        if stamp > (cur_time - float(86400)) and stamp < cur_time:
+            # cur_time - float(86400) is the current time minus 24hrs
             return True
         else:
             return False
 
+fc = FileCheck('')
 
 #------------------------------
 #   Transfer Function
@@ -95,16 +94,22 @@ class FileCheck():
 # if FileCheck supplied with specified file returns True
 # then copy to dst directory
 def transfer(self):
-    path = os.path.normpath(self.txt_browse.get()) # gets path from text entry and normalizes it
-    conv = path + '/'                              # adds a / to end of normalized path
-    src = conv
+    src_path = os.path.normpath(self.txt_browse.get()) # gets path from text entry and normalizes it
+    conv_src = src_path + '/'                              # adds a / to end of normalized path
+    src = conv_src
     src_files = os.listdir(src)
-    dst = os.path.normpath(self.txt_browse2.get())
+    
+    dst_path = os.path.normpath(self.txt_browse2.get())
+    conv_dst = dst_path + '/'
+    dst = conv_dst
     try:
-        if os.path.isdir(path) and os.path.isdir(dst):
+        if os.path.isdir(src_path) and os.path.isdir(dst_path):
             for i in src_files:
-                if FileCheck(i):
+                fc.file_path = src + i
+                if fc.look():
                     shutil.copy2(src + i,dst)
+                else:
+                    continue
     except:
         messagebox.showinfo(title="Folder Selection Error", message="Please select a source and destination folder")
 
