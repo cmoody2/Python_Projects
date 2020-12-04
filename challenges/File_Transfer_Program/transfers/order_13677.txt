@@ -1,4 +1,0 @@
-Order Number:	13677
-Purchase Date:  05/03/2020
-Order:		GMK Jamon
-Payment:	Paypal
